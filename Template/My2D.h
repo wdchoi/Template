@@ -93,10 +93,19 @@ public:
 	}
 	void preprocessing() {
 		glClear(GL_COLOR_BUFFER_BIT);
+		for (int j = 0; j <height; j++)
+			for (int i = 0; i < width; i++) {
+				pixels[(i + width*j) * 3 + 0] = 1.0f;
+				pixels[(i + width*j) * 3 + 1] = 1.0f;
+				pixels[(i + width*j) * 3 + 2] = 1.0f;
+			}
 	}
 	void postprocessiong() {
 		glDrawPixels(width, height, GL_RGB, GL_FLOAT, pixels);
 		glfwSwapBuffers(window);
 		glfwPollEvents();
+	}
+	bool Close() {
+		return !glfwWindowShouldClose(window);
 	}
 };
